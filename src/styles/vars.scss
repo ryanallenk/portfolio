@@ -1,0 +1,101 @@
+@import 'layout';
+
+/*
+* Variables
+* Add global variables here, color palette, those variables shared by components all applied to global styling
+*/
+
+/*
+====================================================================
+Breakpoints
+Window breakpoints
+====================================================================
+*/
+$layout-mobile: map-get($layout, mobile) + px;
+$layout-tablet: map-get($layout, tablet) + px;
+$layout-desktopSm: map-get($layout, desktopSm) + px;
+$layout-desktopMd: map-get($layout, desktopMd) + px;
+$layout-desktopLg: map-get($layout, desktopLg) + px;
+
+/*
+====================================================================
+* Tint/Shade Percentages
+* Percentages to use in the shade/tint functions
+====================================================================
+*/
+
+$tint-percent-1: 30;
+$tint-percent-2: 70;
+$tint-percent-3: 90;
+$shade-percent-1: 30;
+$shade-percent-2: 50;
+$shade-percent-3: 80;
+
+/*
+====================================================================
+* Transition timings
+* Transition timings to use for transitions.
+====================================================================
+*/
+
+$transition-medium: 0.5s;
+$transition: 0.33s;
+$transition-short: 0.2s;
+
+/*
+====================================================================
+* Base palette
+* Grayscale and brand colors for use across the site.
+====================================================================
+*/
+
+$white: #fff;
+$black: #262626;
+$grey: #595959;
+$brand-primary: #de6565;
+
+/*
+====================================================================
+* General
+* Global variables used across the web app
+====================================================================
+*/
+$page-bg-color: $white;
+$element-shadow: 0 16px 16px 10px rgba(0, 0, 0, 0.04);
+$element-shadow-center: 0 0 16px 0 rgba(0, 0, 0, 0.04);
+$element-shadow-center-blue: 0 0 16px 0 rgba(39, 113, 234, 0.1);
+$generic-fonts: Helvetica, Arial, sans-serif;
+$border-radius: 8px;
+
+/*
+====================================================================
+* Spacing Default
+* Global spacing used across the app
+====================================================================
+*/
+$base-spacing-unit: 8;
+$padding-mobile-small: spacing(1);
+$padding-mobile: spacing(2);
+$padding-desktop: spacing(4);
+
+/*
+====================================================================
+* Nav bar
+====================================================================
+*/
+$navbar-height-mobile: 8rem;
+$navbar-height-desktop: 9.6rem;
+
+/*
+====================================================================
+* List of z-index element
+====================================================================
+*/
+$elements: pages, elements, nav, navelements, modal;
+
+/*
+====================================================================
+* Max Widths to use for pages
+====================================================================
+*/
+$page-max-width: px(1200);

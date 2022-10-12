@@ -1,0 +1,13 @@
+@import 'shared';
+
+.Footer {
+  border-top: 1px solid $black;
+
+  .logo {
+    width: px(30);
+  }
+
+  .link {
+    @include font-style(paragraph);
+  }
+}

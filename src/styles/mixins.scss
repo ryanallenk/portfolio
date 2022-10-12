@@ -1,0 +1,266 @@
+/*
+* Sass Mixins
+*
+* More information about mixins in:
+* http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins
+* Add comment to every function
+*/
+
+/// Improve animation performance for containers
+/// @example scss Input
+///   .card {
+///     @include gpu();
+///   }
+@mixin gpu {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  .safari & {
+    perspective: none; // otherwise text and icons become blurry
+  }
+}
+
+/// Set exactly the same width and height of a component, avoid repeat the same dimension
+/// @parameter {Measure unit} $width - Specify width of the box
+/// @parameter {Measure unit} $height [$height] - Specify height of the box, the default value is the width
+/// @example scss Input
+///   .card {
+///     @include box(3.2rem);
+///   }
+///   .card-another {
+///     @include box(3.2rem, 2rem);
+///   }
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// Convert the pixels to rem for in a specific resolution, usually 1440px wide
+// @example scss Input
+//   section {
+//     height: px(200);
+// }
+@function px($px) {
+  @return $px * 0.1rem;
+}
+
+/// Set top and left to 0
+/// @example scss Input
+///   element {
+///     @include position-0;
+///   }
+@mixin position-0 {
+  top: 0;
+  left: 0;
+}
+
+/// Set top/left/bottom/right to 0
+/// @example scss Input
+///   element {
+///     @include position-all-0;
+///   }
+@mixin position-all-0 {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/// Set full size of box and position
+/// @parameter {string} $pos - one of relative, absolute, fixed. relative by default
+/// @example scss Input
+///   element {
+///     @include position-100(absolute);
+///   }
+@mixin position-100($pos: 'relative') {
+  position: $pos;
+  @include position-0;
+  @include box(100%);
+}
+
+/// Set top and left to 0
+/// @example scss Input
+///   element {
+///     @include position-0;
+///   }
+@mixin position-0 {
+  top: 0;
+  left: 0;
+}
+
+/// Set full size of box and position
+/// @parameter {string} $pos - one of relative, absolute, fixed. relative by default
+/// @example scss Input
+///   element {
+///     @include position-100(absolute);
+///   }
+@mixin position-100($pos: 'relative') {
+  position: $pos;
+  @include position-0;
+  @include box(100%);
+}
+
+/// Set display flex and center children horizontally and vertically
+/// @example scss Input
+///   element {
+///     @include flex-center;
+///   }
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Set display flex and center children vertically
+/// @example scss Input
+///  element {
+///    @include flex-center-vert;
+///  }
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+/// Set display flex and center children horizontally
+/// @example scss Input
+///   element {
+///     @include flex-center-horiz;
+///   }
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+/// Set z-index value in order of $element variable
+/// @example scss Input
+///   element {
+///     @include z-index(preloader);
+///   }
+///
+@mixin z-index($id) {
+  z-index: index($elements, $id);
+}
+
+/// Set breakpoint via media queries
+/// @example scss Input
+///   element {
+///     [...phone styles....]
+///     @include breakpoint(tablet) {
+///        [...tablet+desktop styles...]
+///     }
+///   }
+@mixin breakpoint($breakpoint, $pixels: false) {
+  @if $pixels {
+    @media (min-width: $pixels + px) {
+      @content;
+    }
+  } @else {
+    @media (min-width: map-get($layout, $breakpoint) + px) {
+      @content;
+    }
+  }
+}
+
+/// Reset button's look
+/// @example scss Input
+///   button {
+///     @include reset-button;
+///   }
+@mixin reset-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  text-align: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  display: inline-block;
+  margin: 0;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: currentColor;
+}
+
+/// Slightly lighten a color
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color} //
+@function tint($color, $percentage) {
+  @return mix(#fff, $color, $percentage);
+}
+
+// Slightly darken a color
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color} //
+@function shade($color, $percentage) {
+  @return mix(#000, $color, $percentage);
+}
+
+/// Sets the same padding left/right for all pages
+@mixin layout-side-padding() {
+  padding-left: $padding-mobile-small;
+  padding-right: $padding-mobile-small;
+
+  @include breakpoint(mobile) {
+    padding-left: $padding-mobile;
+    padding-right: $padding-mobile;
+  }
+
+  @include breakpoint(desktopSm) {
+    padding-left: $padding-desktop;
+    padding-right: $padding-desktop;
+  }
+}
+
+/// Sets negative margins to make elements full width on the padded pages
+@mixin layout-negative-margin() {
+  margin-left: -$padding-mobile-small;
+  margin-right: -$padding-mobile-small;
+
+  @include breakpoint(mobile) {
+    margin-left: -$padding-mobile;
+    margin-right: -$padding-mobile;
+  }
+
+  @include breakpoint(desktopSm) {
+    margin-left: -$padding-desktop;
+    margin-right: -$padding-desktop;
+  }
+}
+
+@mixin hide-scrollbar() {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/// Set max width and center
+/// @example scss Input
+///  @parameter {Measure unit} $width [$width] - Specify the max-width of the of the element
+///   element {
+///     @include max-width-center();
+///   }
+@mixin max-width-center($width: #{$page-max-width}) {
+  max-width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Return the multiplier passed in divided by the base multiplier
+// @example scss Input
+//   section {
+//     padding-left: spacing(2);
+// }
+@function spacing($multiplier) {
+  $spacing: ($multiplier * $base-spacing-unit);
+  @return px($spacing);
+}

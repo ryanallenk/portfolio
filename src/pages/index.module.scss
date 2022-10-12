@@ -1,0 +1,7 @@
+@import 'shared';
+
+.Home {
+  h1 {
+    @include font-style(h1);
+  }
+}

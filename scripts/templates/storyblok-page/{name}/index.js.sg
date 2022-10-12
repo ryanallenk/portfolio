@@ -1,0 +1,48 @@
+import { memo } from 'react';
+import { getStoryblokApi, useStoryblokState } from '@storyblok/react';
+import classnames from 'classnames';
+
+import styles from './index.module.scss';
+
+import Head from '@/components/Head/Head';
+
+function {{name}}({ story, preview }) {
+  story = useStoryblokState(story, {}, preview);
+  const { content } = story;
+
+  return (
+    <main className={classnames(styles.{{name}})}>
+      <Head title="{{name}}" />
+      <h1>{{name}} Page</h1>
+    </main>
+  );
+}
+
+export async function getStaticProps(context) {
+  let slug = '{{name}}';
+  let params = {
+    version: 'published'
+  };
+
+  if (context.preview) {
+    params.version = 'draft';
+    params.cv = Date.now();
+  }
+
+  const storyblokApi = getStoryblokApi();
+  let { data } = await storyblokApi.get('cdn/links/', {
+    starts_with: 'PAGE_TYPE/',
+    version: 'published'
+  });
+
+  return {
+    props: {
+      story: data ? data.story : false,
+      preview: context.preview != null ? context.preview : false
+    },
+    // revalidates the cache every hour
+    revalidate: 3600
+  };
+}
+
+export default memo({{name}});

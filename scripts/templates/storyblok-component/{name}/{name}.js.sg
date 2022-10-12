@@ -1,0 +1,15 @@
+import { memo } from 'react';
+import { storyblokEditable } from '@storyblok/react';
+import classnames from 'classnames';
+
+import styles from './{{name}}.module.scss';
+
+function {{name}}({ className, blok }) {
+  return (
+    <div className={classnames(styles.{{name}}, className)} {...storyblokEditable(blok)}>
+      {{name}} component
+    </div>
+  );
+}
+
+export default memo({{name}});

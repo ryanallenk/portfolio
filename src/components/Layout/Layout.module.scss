@@ -1,0 +1,14 @@
+@import 'shared';
+
+.Layout {
+  @include max-width-center();
+  @include layout-side-padding;
+  min-height: calc(100vh - #{$navbar-height-mobile});
+  overflow: hidden;
+  position: relative;
+  padding-top: $navbar-height-mobile;
+
+  @include breakpoint(desktopSm) {
+    padding-top: $navbar-height-desktop;
+  }
+}

@@ -1,0 +1,18 @@
+@import 'shared';
+
+.StoryblokProjectImage {
+  @include max-width-center;
+  display: block;
+  width: 100%;
+
+  .image {
+    min-width: 100%;
+    width: 100%;
+
+    img,
+    span {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+}

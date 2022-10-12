@@ -1,0 +1,30 @@
+@import 'shared';
+
+.Header {
+  @include z-index(nav);
+  @include layout-side-padding;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: $navbar-height-mobile;
+  box-shadow: $element-shadow;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+
+  .nav {
+    .menu {
+      display: flex;
+      flex-direction: row;
+
+      .menuItem {
+        padding: px(5) px(10);
+      }
+    }
+  }
+
+  /* Desktop */
+  @include breakpoint(desktopSm) {
+    height: $navbar-height-desktop;
+  }
+}
