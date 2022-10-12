@@ -8,10 +8,10 @@
 # Local env variables
 .env.local
 .env.*.local
-.env.develop
-.env.development
-.env.staging
-.env.production
+# .env.develop
+# .env.development
+# .env.staging
+# .env.production
 
 # testing
 /coverage

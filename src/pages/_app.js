@@ -11,9 +11,12 @@ import gsapInit from '@/utils/gsap';
 import storyblokComponents from '@/lib/storyblok/storyblok-components';
 
 storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_KEY,
   use: [apiPlugin],
-  components: storyblokComponents
+  components: storyblokComponents,
+  apiOptions: {
+    region: 'us' // Pass this key/value if your space was created under US region
+  }
 });
 
 if (typeof window !== 'undefined') {
