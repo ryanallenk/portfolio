@@ -6,5 +6,9 @@ export default {
   About: {
     path: '/about/',
     title: 'About'
+  },
+  Work: {
+    path: '/work/',
+    title: 'Work'
   }
 };
