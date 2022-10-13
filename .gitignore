@@ -37,3 +37,7 @@ yarn-error.log*
 # Documentation
 public/components
 public/styleguide
+
+# Proxy
+localhost.pem
+localhost-key.pem

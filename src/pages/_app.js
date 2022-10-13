@@ -8,7 +8,17 @@ import Layout from '@/components/Layout/Layout';
 
 import gsapInit from '@/utils/gsap';
 
-import storyblokComponents from '@/lib/storyblok/storyblok-components';
+import Feature from '../storyblok-components/Feature/Feature';
+import Grid from '../storyblok-components/Grid/Grid';
+import Page from '../storyblok-components/Page/Page';
+import Teaser from '../storyblok-components/Teaser/Teaser';
+
+const storyblokComponents = {
+  feature: Feature,
+  grid: Grid,
+  page: Page,
+  teaser: Teaser
+}
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_KEY,
