@@ -18,7 +18,7 @@ const storyblokComponents = {
   grid: Grid,
   page: Page,
   teaser: Teaser
-}
+};
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_KEY,
