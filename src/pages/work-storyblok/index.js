@@ -10,12 +10,12 @@ export default function Work({ story }) {
   return (
     <main className={classnames(styles.storyblok)}>
       <Head>
-        <title>Create Next App</title>
+        <title>Projects</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>
-        <h1>{story ? story.name : "Ryan's Portfolio"}</h1>
+        <h1>Portfolio</h1>
       </header>
       <StoryblokComponent blok={story.content} />
     </main>
